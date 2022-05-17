@@ -1,6 +1,6 @@
 // imports
 // import getAllCategories from /.CategoryManager 
-import { getAllCategories } from "./CategoryManager";
+import { deleteCategory, getAllCategories } from "./CategoryManager";
 import React, { useEffect, useState } from "react";
 import { NewCategoryForm } from "./CreateCategoryForm";
 // import React, useEffect, useState 
@@ -35,8 +35,11 @@ export const AllCategories = () => {
             <NewCategoryForm getCategories={getCategories} />
         </div>
         {categories.map((category) => {
-            return <div key={`category--${category.id}`}>{category.label}
-                <button>edit</button> <button>delete</button>
+            return <div key={`category--${category.id}`} value={`${category.id}`}>{category.label}
+                <button>edit</button> 
+                <button onClick={() => {
+                            deleteCategory(category.id).then(getCategories)
+                        }}>delete</button>
             </div>
         })}
 

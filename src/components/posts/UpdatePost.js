@@ -3,30 +3,30 @@
 // import fetch for getPostById and fetch for users, import PUT from manager
 
 // export function
-  // store userHistory() in var
-  // [post, updatePost] useState({})
-  // [user, updateUser]?
-  // const {postId} = useParams()
+//   store userHistory() in var
+//   [post, updatePost] useState({})
+//   [user, updateUser]?
+//   const {postId} = useParams()
 
-  //useEffect
-    // getPostById()
-      // .then(r=>r.json())
-        // .then(post => updatePost)
+//   useEffect
+//     getPostById()
+//       .then(r=>r.json())
+//         .then(post => updatePost)
 
-  // function to edit item
-    // prevent default on event
+//   function to edit item
+//     prevent default on event
 
-    // newPost var = {keys with "post." and "parseInt"}
+//     newPost var = {keys with "post." and "parseInt"}
 
-    // invoke sendPost and pass it the newPost
-      // .then history.push("/<appropriate name>")
+//     invoke sendPost and pass it the newPost
+//       .then history.push("/<appropriate name>")
 
 
-  // return
+//   return
 
-  // EXAMPLE RETURN FORM:
+//   EXAMPLE RETURN FORM:
 
-    // <form className="inventoryForm">
+//     <form className="inventoryForm">
 //       <h2 className="inventoryForm__title">Edit Inventory Item</h2>
 //       <fieldset>
 //         <div className="form-group">
