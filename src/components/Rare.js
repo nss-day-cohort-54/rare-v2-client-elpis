@@ -9,7 +9,7 @@ export const Rare = () => {
   const [token, setTokenState] = useState(localStorage.getItem('token'))
 
   const setToken = (newToken) => {
-    localStorage.setItem('token', newToken)
+    localStorage.setItem('lu_token', newToken)
     setTokenState(newToken)
   }
 
