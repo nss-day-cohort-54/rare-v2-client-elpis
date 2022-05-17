@@ -1,10 +1,7 @@
 // fetch all the categories
 
-<<<<<<< HEAD
-=======
 import { fetchIt } from "../utils/Fetch"
 
->>>>>>> main
 const API = 'http://localhost:8000'
 
 export const getAllCategories = () => {
