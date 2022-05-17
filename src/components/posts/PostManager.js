@@ -59,14 +59,12 @@ export const getPostsByTag = (id) => {
 //   }).then((response) => response.json());
 // };
 
-export const searchPostTitles = (titleString) => {
-  return fetch(`http://localhost:8000/posts?title=${titleString}`).then((res) =>
-    res.json()
-  );
+export const searchPostTitles = titleString => {
+  return fetch(`http://localhost:8000/posts?title=${titleString}`)
+    .then(res => res.json())
 };
 
-export const searchPostCategories = (categoryId) => {
-  return fetch(`http://localhost:8000/posts?category=${categoryId}`).then(
-    (res) => res.json()
-  );
+export const searchPostCategories = categoryId => {
+  return fetch(`http://localhost:8000/posts?category=${categoryId}`)
+    .then(res => res.json())
 };

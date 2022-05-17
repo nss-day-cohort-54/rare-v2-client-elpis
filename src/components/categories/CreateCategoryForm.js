@@ -10,17 +10,6 @@ export const NewCategoryForm = ({ getCategories }) => {
   const [form, updateForm] = useState({ label: "" });
   const history = useHistory();
 
-  // const [form, updateForm] = useState()
-
-  // create a submitNewCategory button which will submit a new category to the server
-  // accepts one parameter, "e"
-  // e.preventDefault()
-  // defines a new  variable which will be an object for the new category, "newCategory"
-  // the object will have one key value pair:
-  // label: form.category
-  // define a new variable, fetchOption, method will be POST, headers will be "Content-Type": "application/json"
-  // convert what we're sending to the server into json body: JSON.stringify(newCategory)
-
   const submitNewCategory = (e) => {
     e.preventDefault();
     const newCategory = {
@@ -38,18 +27,6 @@ export const NewCategoryForm = ({ getCategories }) => {
 
   // example:
 
-  // const submitCategory = (e) => {
-  //     e.preventDefault()
-  //     const newCategory = {
-  //         label: form.label,
-  //     }
-  //     const fetchOption = {
-  //         method: "POST",
-  //         headers: {
-  //             "Content-Type": "application/json"
-  //         },
-  //         body: JSON.stringify(newCategory)
-  //     }
 
   //     return fetch("http://localhost:8000/categories", fetchOption)
   // }

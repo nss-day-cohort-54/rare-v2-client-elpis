@@ -4,6 +4,7 @@ import { fetchIt } from "../utils/Fetch";
 
 const API = "http://localhost:8000";
 
+
 export const getAllTags = () => {
   return fetchIt(`${API}/tags`);
 };
