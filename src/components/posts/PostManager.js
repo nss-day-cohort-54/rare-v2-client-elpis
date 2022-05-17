@@ -36,8 +36,8 @@ export const deletePost = (id) => {
 // body is stringified json with entry passed as arg
 
 // get posts by user id
-export const getUserPosts = (id) => {
-  return fetchIt(`${Settings.API}/posts?user_id=${id}`)
+export const getUserPosts = () => {
+  return fetchIt(`${Settings.API}/posts/current_user_list`)
 };
 
 export const getPostsByTag = (id) => {
