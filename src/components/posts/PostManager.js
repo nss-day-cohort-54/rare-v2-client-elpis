@@ -46,13 +46,13 @@ export const getPostsByTag = (id) => {
 };
 // get posts by categoryId
 // export const getPostsByCategoryId = (categoryId) => {
-//   return fetch(`http://localhost:8088/posts?categoryId=${categoryId}`)
+//   return fetch(`http://localhost:8000/posts?categoryId=${categoryId}`)
 //   .then(response => response.json())
 // }
 
 // create post
 // export const createPost = (body) => {
-//   return fetch(`http://localhost:8088/posts`, {
+//   return fetch(`http://localhost:8000/posts`, {
 
 //     method: "POST",
 //     headers: {
@@ -63,11 +63,11 @@ export const getPostsByTag = (id) => {
 // };
 
 export const searchPostTitles = titleString => {
-  return fetch(`http://localhost:8088/posts?title=${titleString}`)
+  return fetch(`http://localhost:8000/posts?title=${titleString}`)
     .then(res => res.json())
 };
 
 export const searchPostCategories = categoryId => {
-  return fetch(`http://localhost:8088/posts?category=${categoryId}`)
+  return fetch(`http://localhost:8000/posts?category=${categoryId}`)
     .then(res => res.json())
 };
