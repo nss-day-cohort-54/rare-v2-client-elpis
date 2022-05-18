@@ -1,6 +1,7 @@
 // FetchIt is a universal fetch function
 // takes the target url, a method, and a body
 export const fetchIt = (url, method = "GET", body = null) => {
+
     // declare default options object
     let options = {
         "method": method,
