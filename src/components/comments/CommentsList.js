@@ -60,7 +60,7 @@ export const CommentList = ({ postId }) => {
     */}
     {
         comments.map(comment => {
-            let currentAuthor = comment.user.id === parseInt(localStorage.getItem("token"))
+            let currentAuthor = comment.author.id === parseInt(localStorage.getItem("token"))
             return <div key={`comment--${comment.id}`}>
                     <Comment postId={postId} commentObject={comment} currentAuthor={currentAuthor} getComments={getComments} />
                 </div>
