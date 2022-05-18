@@ -10,19 +10,19 @@ import { getAllCategories } from "../categories/CategoryManager";
 export const AllPosts = () => {
 
     const [posts, setPosts] = useState([])
-    const [users, setUsers] = useState([])
+    // const [users, setUsers] = useState([])
     const [tags, setTags] = useState([])
     const [categories, setCategories] = useState([])
     const [filter, setFilterType] = useState({ type: "all", value: "" })
 
 
-    useEffect(
-        () => {
-            getAllUsers()
-                .then(setUsers)
-        },
-        []
-    )
+    // useEffect(
+    //     () => {
+    //         getAllUsers()
+    //             .then(setUsers)
+    //     },
+    //     []
+    // )
 
     useEffect(
         () => {
@@ -59,7 +59,8 @@ export const AllPosts = () => {
             getUserPosts(filter.value)
                 .then(setPosts)
             // run user filter fetch with value
-        } else if (filter.type === "tag") {
+        } 
+        else if (filter.type === "tag") {
             getPostsByTag(filter.value)
                 .then(setPosts)
             // run tag filter fetch with value
@@ -138,13 +139,13 @@ export const AllPosts = () => {
                 <option name="authorId" hidden value="0">
                     Author...
                 </option>
-                {users?.map((user, index) => {
+                {/* {users?.map((user, index) => {
                     return (
                         <option key={index} name="AuthorId" value={user.id}>
                             {user.username}
                         </option>
                     );
-                })}
+                })} */}
             </select>
         </fieldset>
         {/* filter by tag jsx */}
