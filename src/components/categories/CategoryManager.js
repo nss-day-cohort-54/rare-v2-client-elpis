@@ -8,9 +8,16 @@ export const getAllCategories = () => {
   return fetchIt(`${API}/categories`)
     
 }
-
+export const getSingleCategory = (categoryId) => {
+  return fetch(`http://localhost:8000/categories/${categoryId}`, {
+      headers:{
+          "Authorization": `Token ${localStorage.getItem("lu_token")}`
+      }
+   })
+      .then(response => response.json())
+}
 export const updateCategory = (updatedCategory, categoryId) => {
-  return fetch(`http://localhost:8000/games/${categoryId}`, {
+  return fetch(`http://localhost:8000/categories/${categoryId}`, {
     method: "PUT",
     headers: {
       Authorization: `Token ${localStorage.getItem("lu_token")}`,
