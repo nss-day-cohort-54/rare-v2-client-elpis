@@ -6,38 +6,26 @@ export const MyPosts = () => {
     const currentUser = localStorage.getItem("lu_token")
     const [posts, setPosts] = useState([])
 
+    const loadUsers = () => {
+        getUserPosts(currentUser)
+                    .then(setPosts)
+    }
 
     useEffect(
         () => {
-            getUserPosts(currentUser)
-                .then(setPosts)
+            loadUsers()
         },
         []
     )
+
 
     return <>
         {
             posts.map(post => {
                 return <div key={`post-${post.id}`}>
-                    <Post listView={true} cardView={true} post={post} />
+                    <Post listView={true} loadUsers={loadUsers} cardView={true} post={post} />
                 </div> 
             })
         }
     </>
 }
-
-// const [sortedPosts, setSortedPosts] = useState()
-
-// useEffect(() => {
-//     setSortedPosts(
-//     posts.sort(function (a, b) {
-//         if (a.publication_date < b.publication_date) {
-//         return -1;
-//         }
-//         if (a.publication_date > b.publication_date) {
-//         return 1;
-//         }
-//         return 0;
-//     })
-//     );
-// }, [[tags]]);
