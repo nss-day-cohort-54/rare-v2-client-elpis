@@ -3,8 +3,9 @@ import { Post } from "./Post"
 import { getUserPosts } from "./PostManager"
 
 export const MyPosts = () => {
-    const currentUser = localStorage.getItem("token")
+    const currentUser = localStorage.getItem("lu_token")
     const [posts, setPosts] = useState([])
+
 
     useEffect(
         () => {
@@ -24,3 +25,19 @@ export const MyPosts = () => {
         }
     </>
 }
+
+// const [sortedPosts, setSortedPosts] = useState()
+
+// useEffect(() => {
+//     setSortedPosts(
+//     posts.sort(function (a, b) {
+//         if (a.publication_date < b.publication_date) {
+//         return -1;
+//         }
+//         if (a.publication_date > b.publication_date) {
+//         return 1;
+//         }
+//         return 0;
+//     })
+//     );
+// }, [[tags]]);

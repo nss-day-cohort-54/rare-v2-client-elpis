@@ -30,7 +30,7 @@ export const Post = ({ listView, cardView, post }) => {
                         <img src={`${post.imageUrl || "https://picsum.photos/300/100"}`} />
                     </div>
                     <div className="cardBottom">
-                        <div>Author: {post.user.firstName} {post.user.lastName}</div>
+                        <div>Author: {post.user.user.first_name} {post.user.user.last_name}</div>
                         <div className="cardFunctions">
                             <div>Reaction Count: 0</div>
                             {

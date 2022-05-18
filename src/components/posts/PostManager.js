@@ -2,8 +2,8 @@ import { fetchIt } from "../utils/Fetch";
 import { Settings } from "../utils/Settings";
 
 export const getAllPosts = () => {
-  return fetch(`${Settings.API}/posts`).then((res) => res.json());
-};
+  return fetchIt(`${Settings.API}/posts`)
+}
 
 // export function that fetches single post, needs param to take id as arg, then parse from json to js
 
@@ -34,8 +34,8 @@ export const deletePost = (id) => {
 // body is stringified json with entry passed as arg
 
 // get posts by user id
-export const getUserPosts = (id) => {
-  return fetchIt(`${Settings.API}/posts?user_id=${id}`);
+export const getUserPosts = () => {
+  return fetchIt(`${Settings.API}/posts/current_user_list`)
 };
 
 export const getPostsByTag = (id) => {
