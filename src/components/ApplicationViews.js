@@ -1,10 +1,11 @@
-import React from "react"
-import { Route } from "react-router-dom"
-import { Home } from "./home/Home.js"
-import { AllPosts } from "./posts/AllPosts.js"
-import { UserList } from "./users/UserList.js"
-import { AllTags } from "./tags/AllTags.js"
-import { AllCategories } from "./categories/AllCategories"
+import React from "react";
+import { Route } from "react-router-dom";
+import { Home } from "./home/Home.js";
+import { AllPosts } from "./posts/AllPosts.js";
+import { UserList } from "./users/UserList.js";
+import { AllTags } from "./tags/AllTags.js";
+// import { TagEdit } from "./tags/UpdateTag.js";
+import { AllCategories } from "./categories/AllCategories";
 
 import { User } from "./users/User.js"
 import { CreatePosts } from "./posts/CreatePosts.js"
@@ -12,6 +13,11 @@ import { MyPosts } from "./posts/MyPosts.js"
 import { PostsByUser } from "./posts/PostsByUser.js"
 import { SinglePost } from "./posts/SinglePost.js"
 import { EditPost } from "./posts/EditPost.js"
+import { User } from "./users/User.js";
+import { CreatePosts } from "./posts/CreatePosts.js";
+import { MyPosts } from "./posts/MyPosts.js";
+import { PostsByUser } from "./posts/PostsByUser.js";
+import { SinglePost } from "./posts/SinglePost.js";
 
 export const ApplicationViews = () => {
   return (
@@ -31,6 +37,9 @@ export const ApplicationViews = () => {
       <Route path="/tags">
         <AllTags />
       </Route>
+      {/* <Route exact path="/tags/:tagId(\d+)">
+        <TagEdit />
+      </Route> */}
       <Route exact path="/newPost">
         <CreatePosts editing={false} />
       </Route>
@@ -53,5 +62,5 @@ export const ApplicationViews = () => {
         <AllCategories />
       </Route>
     </>
-  )
-}
+  );
+};
