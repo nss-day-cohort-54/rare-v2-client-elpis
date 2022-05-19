@@ -13,11 +13,7 @@ import { MyPosts } from "./posts/MyPosts.js"
 import { PostsByUser } from "./posts/PostsByUser.js"
 import { SinglePost } from "./posts/SinglePost.js"
 import { EditPost } from "./posts/EditPost.js"
-import { User } from "./users/User.js";
-import { CreatePosts } from "./posts/CreatePosts.js";
-import { MyPosts } from "./posts/MyPosts.js";
-import { PostsByUser } from "./posts/PostsByUser.js";
-import { SinglePost } from "./posts/SinglePost.js";
+
 
 export const ApplicationViews = () => {
   return (

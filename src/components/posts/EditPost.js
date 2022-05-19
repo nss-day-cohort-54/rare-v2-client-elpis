@@ -1,10 +1,8 @@
 // imports React, useEffect, useSate, useHistory, sendPost, fetchTags
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { fetchIt } from "../utils/Fetch"
-import { Settings } from "../utils/Settings"
 import { getAllTags } from "../tags/TagManager";
-import { getAllPosts, getSinglePost, updatePost } from "./PostManager";
+import { getSinglePost, updatePost } from "./PostManager";
 import { getAllCategories } from "../categories/CategoryManager";
 import { useParams } from "react-router-dom";
 
@@ -13,7 +11,7 @@ export const EditPost = () => {
     const [tags, setTags] = useState([])
     const { postId } = useParams()
     const history = useHistory()
-    const [currentPost, setCurrentPost] = useState()
+    const [currentPost, setCurrentPost] = useState({})
 
     useEffect(() => {
         getAllCategories()
@@ -33,7 +31,6 @@ export const EditPost = () => {
 
     useEffect(
         () => {
-           
         getSinglePost(postId)
             .then(setCurrentPost)
             
@@ -97,17 +94,18 @@ export const EditPost = () => {
                             copy.category = parseInt(e.target.value)
                             setCurrentPost(copy)
                         }}
-                        defaultValue="0" value={form.category}>
-                        <option value="0" hidden>Category Select</option>
+                        defaultValue={`${currentPost.category?.id}`} value={currentPost.category?.label}>
+                        <option value="0" selected>{currentPost.category?.label}</option>
                         {
                             categories.map(
                                 (c) => {
-                                    return (
-                                        <option key={`category--${c.id}`} value={`${c.id}`}>
-                                            {`${c.label}`}
-                                        </option>
-                                    )
-                                }
+                                    if (c.id === parseInt(currentPost.category?.id)) {
+                                        return null
+                                    } else {
+                                        return <option key={`category--${c.id}`} value={`${c.id}`}>
+                                        {`${c.label}`}
+                                    </option>
+                                    }}
                             )
                         }
                     </select>
@@ -123,7 +121,8 @@ export const EditPost = () => {
                             id={tag.id}
                             onChange={(e) => {
                                 const copy = { ...currentPost }
-                                copy.tag.push(parseInt(e.target.id))
+                                copy.tags = []
+                                copy.tags.push(parseInt(e.target.id))
                                 setCurrentPost(copy)
                             }}
                         />
@@ -142,8 +141,10 @@ export const EditPost = () => {
                         title: currentPost.title,
                         image_url: currentPost.image_url,
                         content: currentPost.content,
-                        categories: parseInt(currentPost.categories),
-                        tags: parseInt(currentPost.tags)
+                        category: parseInt(currentPost.category),
+                        tags: currentPost.tags,
+                        publication_date: (new Date()).toISOString().split('T')[0],
+                        approved: true
                     }
 
                     // Send POST request to your API
