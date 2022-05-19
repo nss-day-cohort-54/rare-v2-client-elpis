@@ -1,10 +1,10 @@
 // imports
-// import getAllCategories from /.CategoryManager
+// import getAllCategories from /.CategoryManager 
 import { deleteCategory, getAllCategories } from "./CategoryManager";
 import React, { useEffect, useState } from "react";
 import { NewCategoryForm } from "./CreateCategoryForm";
 import { EditCategoryForm } from "./EditCategory";
-import { CategoryModal } from "../modal/CateogryModal";
+import { CategoryModal } from "../modal/CategoryModal";
 // import React, useEffect, useState 
 
 // declare and export function AllCategories which get all category objects
@@ -30,11 +30,7 @@ export const AllCategories = () => {
             })
         
 
-  const getCategories = () => {
-    getAllCategories().then((categories) => {
-      setCategories(categories);
-    });
-  };
+    }
 
 // return a map through the categories array that will have 
 // edit and delete buttons  
@@ -43,45 +39,30 @@ export const AllCategories = () => {
         <div>AllCategories Page</div>
         {editable === false ?
         <div className="CreateNewCategoryFormContainer">
-          <NewCategoryForm getCategories={getCategories} />
+            <NewCategoryForm getCategories={getCategories} />
         </div>
-      ) : (
+        :
         <div className="CreateNewCategoryFormContainer">
-          <EditCategoryForm
-            selectedCategory={selectedCategory}
-            setEditableState={setEditableState}
-            getCategories={getCategories}
-          />
-        </div>
-      )}
+            <EditCategoryForm selectedCategory={selectedCategory} setEditableState={setEditableState} getCategories={getCategories} />
+        </div>}
 
-      {categories.map((category) => {
-        return (
-          <div key={`category--${category.id}`} value={`${category.id}`}>
-            {category.label}
-            <button
-              name={category.label}
-              id={category.id}
-              onClick={(evt) => {
-                setSelectedCategory({
-                  id: parseInt(evt.target.id),
-                  label: evt.target.name,
-                });
-                setEditableState(true);
-              }}
-            >
-              edit
-            </button>
-            <button
-              onClick={() => {
-                deleteCategory(category.id).then(getCategories);
-              }}
-            >
-              delete
-            </button>
-          </div>
-        );
-      })}
+        {categories.map((category) => {
+            return <div key={`category--${category.id}`} value={`${category.id}`}>{category.label}
+                {localStorage.getItem('is_admin') === "true" ? <><button name={category.label} id={category.id} onClick={(evt) => {
+                    setSelectedCategory({id:parseInt(evt.target.id), label:evt.target.name})
+                    setEditableState(true)}}>edit</button> 
+                <button id="deleteCategory" 
+                name={category.id} 
+                onClick={ (evt) => {
+                setCategoryToDelete(evt.target.name)
+                setModalStatus(true)
+                }}>
+                Delete post
+                </button></>: null}
+            </div>
+        })}
+
+
     </>
-  );
-};
+}
+
