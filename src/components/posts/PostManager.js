@@ -68,3 +68,15 @@ export const searchPostCategories = categoryId => {
   return fetch(`http://localhost:8000/posts?category=${categoryId}`)
     .then(res => res.json())
 };
+
+export const updatePost = (newPost, postId) => {
+  return fetch(`http://localhost:8000/posts/${postId}`, {
+      method: "PUT",
+      headers: {
+          "Authorization": `Token ${localStorage.getItem("lu_token")}`,
+          "Content-Type": "application/JSON"
+      },
+      body: JSON.stringify(newPost)
+  })
+  .then(getAllPosts())
+}

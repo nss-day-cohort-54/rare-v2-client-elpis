@@ -11,6 +11,7 @@ import { CreatePosts } from "./posts/CreatePosts.js"
 import { MyPosts } from "./posts/MyPosts.js"
 import { PostsByUser } from "./posts/PostsByUser.js"
 import { SinglePost } from "./posts/SinglePost.js"
+import { EditPost } from "./posts/EditPost.js"
 
 export const ApplicationViews = () => {
   return (
@@ -45,10 +46,9 @@ export const ApplicationViews = () => {
       <Route exact path="/posts/user/:userId(\d+)">
         <PostsByUser />
       </Route>
-      {/* 
-      <Route exact path="/posts/create">
-        <CreatePost />
-      </Route> */}
+      <Route exact path="/updatePost/:postId(\d+)">
+        <EditPost />
+      </Route> 
       <Route exact path="/categories">
         <AllCategories />
       </Route>

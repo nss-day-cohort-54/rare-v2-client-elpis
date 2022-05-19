@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { ButtonControls } from "../buttonControls/ButtonControls"
 import { CommentList } from "../comments/CommentsList"
 import { Modal } from "../modal/Modal"
+import { EditPost } from "./EditPost"
 import "./Post.css"
 // function that renders a single post
 export const Post = ({ listView, cardView, post, loadUsers }) => {
@@ -13,6 +14,7 @@ export const Post = ({ listView, cardView, post, loadUsers }) => {
     const currentUser = parseInt(localStorage.getItem("token"))
     const [modalStatus, setModalStatus] = useState(false)
     const [postToDelete, setPostToDelete] = useState()
+    const [postToEdit, setPostToEdit] = useState()
 
 
     return <>
@@ -48,6 +50,14 @@ export const Post = ({ listView, cardView, post, loadUsers }) => {
                                         }>
                                             Delete post
                                         </button>
+                                        <button id="editPost" name={post.id} onClick={
+                                            (evt) => {
+                                                setPostToEdit(evt.target.name)
+                                                history.push({ pathname: `/updatePost/${post.id}` })
+                                            }
+                                        }>
+                                            Edit post
+                                        </button>
                                     </div>
                                     : null
                             }
@@ -62,7 +72,8 @@ export const Post = ({ listView, cardView, post, loadUsers }) => {
                             </Link>
                             {
                                 post.is_authorized 
-                                    ? <button id="deletePost" name={post.id} onClick={
+                                    ? <div className="cardButtons">
+                                    <button id="deletePost" name={post.id} onClick={
                                         (evt) => {
                                             setPostToDelete(evt.target.name)
                                             setModalStatus(true)
@@ -70,6 +81,14 @@ export const Post = ({ listView, cardView, post, loadUsers }) => {
                                     }>
                                         Delete post
                                     </button>
+                                    <button id="editPost" name={post.id} onClick={
+                                        (evt) => {
+                                            setPostToEdit(evt.target.name)
+                                        }
+                                    }>
+                                        Edit post
+                                    </button>
+                                    </div>
                                     : null
                             }
                         </div>
@@ -84,7 +103,8 @@ export const Post = ({ listView, cardView, post, loadUsers }) => {
                                 <div className="cardButtons">
                                     {
                                         post.is_authorized 
-                                            ? <button id="deletePost" name={post.id} onClick={
+                                            ? <div className="cardButtons">
+                                            <button id="deletePost" name={post.id} onClick={
                                                 (evt) => {
                                                     setPostToDelete(evt.target.name)
                                                     setModalStatus(true)
@@ -92,6 +112,14 @@ export const Post = ({ listView, cardView, post, loadUsers }) => {
                                             }>
                                                 Delete post
                                             </button>
+                                            <button id="editPost" name={post.id} onClick={
+                                            (evt) => {
+                                                setPostToEdit(evt.target.name)
+                                            }
+                                        }>
+                                            Edit post
+                                        </button>
+                                        </div>
                                             : null
                                     }
                                 </div>
