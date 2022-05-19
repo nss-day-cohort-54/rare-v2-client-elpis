@@ -32,8 +32,9 @@ export const EditPost = () => {
     useEffect(
         () => {
         getSinglePost(postId)
-            .then(setCurrentPost)
-            
+            .then((data) => {
+                data.category = data.category.id
+                setCurrentPost(data)})
         }, []
     )
 
@@ -94,8 +95,8 @@ export const EditPost = () => {
                             copy.category = parseInt(e.target.value)
                             setCurrentPost(copy)
                         }}
-                        defaultValue={`${currentPost.category?.id}`} value={currentPost.category?.label}>
-                        <option value="0" selected>{currentPost.category?.label}</option>
+                        value={currentPost.category}>
+                        <option value="0" selected>Choose a category</option>
                         {
                             categories.map(
                                 (c) => {
