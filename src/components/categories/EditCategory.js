@@ -5,7 +5,6 @@ import { updateCategory } from "./CategoryManager";
 
 
 export const EditCategoryForm = ({ selectedCategory, setEditableState, getCategories }) => {
-  const [form, updateForm] = useState({ label: "" });
   const [category, setCategory] = useState([])
 
   const submitNewCategory = (e) => {
