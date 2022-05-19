@@ -1,15 +1,20 @@
 import { getAllTags, deleteTag } from "./TagManager";
 import React, { useEffect, useState } from "react";
 import { NewTagForm } from "./CreateTagForm";
+import { EditTagForm } from "./UpdateTag";
+
+// declare and export function AllTags w/ all tag objects
+
 export const AllTags = () => {
+  // useState sets the state for tags array for when the state changes
   const [tags, setTags] = useState([]);
   const [sortedTags, setSortedTags] = useState([]);
+  const [editableTag, setEditableTagState] = useState(false);
+  const [selectedTag, setSelectedTag] = useState();
 
-  const getTags = () => {
-    return getAllTags().then((tags) => {
-      setTags(tags);
-    });
-  };
+  useEffect(() => {
+    getTags();
+  }, []);
 
   useEffect(() => {
     setSortedTags(
@@ -25,28 +30,50 @@ export const AllTags = () => {
     );
   }, [[tags]]);
 
-  const deleteHandler = (id) => {
-    deleteTag(id)
-      .then(getAllTags)
-      .then((data) => setTags(data));
+  const getTags = () => {
+    getAllTags().then((tags) => {
+      setTags(tags);
+    });
   };
 
-  useEffect(() => {
-    getTags();
-  }, []);
   return (
     <>
       <div>AllTags Page</div>
-      <div className="CreateNewTagFormContainer">
-        <NewTagForm getTags={getTags} />
-      </div>
+      {editableTag === false ? (
+        <div className="CreateNewTagFormContainer">
+          <NewTagForm getTags={getTags} />
+        </div>
+      ) : (
+        <div className="CreateNewTagFormContainer">
+          <EditTagForm
+            selectedTag={selectedTag}
+            setEditableTagState={setEditableTagState}
+            getTags={getTags}
+          />
+        </div>
+      )}
 
       {sortedTags.map((tag) => {
         return (
-          <div key={`tag--${tag.id}`}>
+          <div key={`tag--${tag.id}`} value={`${tag.id}`}>
             {tag.label}
-            <button>edit</button>{" "}
-            <button onClick={() => deleteHandler(tag.id)}>delete</button>
+            <button
+              name={tag.label}
+              id={tag.id}
+              onClick={(evt) => {
+                setSelectedTag({
+                  id: parseInt(evt.target.id),
+                  label: evt.target.name,
+                });
+                setEditableTagState(true);
+              }}
+            >
+              edit
+            </button>
+
+            <button onClick={() => deleteTag(tag.id).then(getTags)}>
+              delete
+            </button>
           </div>
         );
       })}
