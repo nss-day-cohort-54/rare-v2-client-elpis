@@ -2,6 +2,7 @@ import { getAllTags, deleteTag } from "./TagManager";
 import React, { useEffect, useState } from "react";
 import { NewTagForm } from "./CreateTagForm";
 import { EditTagForm } from "./UpdateTag";
+import { TagModal } from "../modal/TagModal";
 
 // declare and export function AllTags w/ all tag objects
 
@@ -11,6 +12,8 @@ export const AllTags = () => {
   const [sortedTags, setSortedTags] = useState([]);
   const [editableTag, setEditableTagState] = useState(false);
   const [selectedTag, setSelectedTag] = useState();
+  const [modalStatus, setModalStatus] = useState(false);
+  const [tagToDelete, setTagToDelete] = useState();
 
   useEffect(() => {
     getTags();
@@ -38,6 +41,14 @@ export const AllTags = () => {
 
   return (
     <>
+      {modalStatus ? (
+        <TagModal
+          tagId={tagToDelete}
+          getTags={getTags}
+          setModalStatus={setModalStatus}
+        />
+      ) : null}
+
       <div>AllTags Page</div>
       {editableTag === false ? (
         <div className="CreateNewTagFormContainer">
@@ -57,23 +68,34 @@ export const AllTags = () => {
         return (
           <div key={`tag--${tag.id}`} value={`${tag.id}`}>
             {tag.label}
-            <button
-              name={tag.label}
-              id={tag.id}
-              onClick={(evt) => {
-                setSelectedTag({
-                  id: parseInt(evt.target.id),
-                  label: evt.target.name,
-                });
-                setEditableTagState(true);
-              }}
-            >
-              edit
-            </button>
+            {localStorage.getItem("is_admin") === "true" ? (
+              <>
+                <button
+                  name={tag.label}
+                  id={tag.id}
+                  onClick={(evt) => {
+                    setSelectedTag({
+                      id: parseInt(evt.target.id),
+                      label: evt.target.name,
+                    });
+                    setEditableTagState(true);
+                  }}
+                >
+                  edit
+                </button>
 
-            <button onClick={() => deleteTag(tag.id).then(getTags)}>
-              delete
-            </button>
+                <button
+                  id="deleteTag"
+                  name={tag.id}
+                  onClick={(evt) => {
+                    setTagToDelete(evt.target.name);
+                    setModalStatus(true);
+                  }}
+                >
+                  Delete tag
+                </button>
+              </>
+            ) : null}
           </div>
         );
       })}
