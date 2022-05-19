@@ -84,6 +84,7 @@ export const Post = ({ listView, cardView, post, loadUsers }) => {
                                     <button id="editPost" name={post.id} onClick={
                                         (evt) => {
                                             setPostToEdit(evt.target.name)
+                                            history.push({ pathname: `/updatePost/${post.id}` })
                                         }
                                     }>
                                         Edit post
@@ -115,6 +116,7 @@ export const Post = ({ listView, cardView, post, loadUsers }) => {
                                             <button id="editPost" name={post.id} onClick={
                                             (evt) => {
                                                 setPostToEdit(evt.target.name)
+                                                history.push({ pathname: `/updatePost/${post.id}` })
                                             }
                                         }>
                                             Edit post

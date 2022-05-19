@@ -149,7 +149,7 @@ export const EditPost = () => {
 
                     // Send POST request to your API
                     updatePost(newPost, currentPost.id)
-                        .then(() => history.push("/posts"))
+                        .then(() => history.push("/posts/all"))
                 }}
                 className="btn btn-primary">Update</button>
         </form>
