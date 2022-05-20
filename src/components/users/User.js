@@ -87,7 +87,7 @@ export const User = ({ listView, user }) => {
                         </Link>
                     </div>
                     <div>
-                        <SubForm author={viewUser} />
+                        {/* <SubForm author={viewUser} /> */}
                     </div>
                 </div>
                 : null
