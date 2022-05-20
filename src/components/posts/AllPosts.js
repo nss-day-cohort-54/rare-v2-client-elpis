@@ -51,7 +51,7 @@ export const AllPosts = () => {
             searchPostTitles(filter.value)
                 .then(setPosts)
         } else if (filter.type === "category") {
-           searchPostCategories(filter.value)
+           searchPostCategories(parseInt(filter.value))
                 .then(setPosts)
         } 
           // run category filter fetch with value
@@ -89,8 +89,8 @@ export const AllPosts = () => {
                 </button>
             </div>
         </fieldset>
-        {/* filter by category jsx */}
 
+        {/* filter by category jsx */}
         <fieldset>
             <select
                 className="categoryDropdown"

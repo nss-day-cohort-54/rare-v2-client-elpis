@@ -60,13 +60,11 @@ export const getPostsByTag = (id) => {
 // };
 
 export const searchPostTitles = titleString => {
-  return fetch(`http://localhost:8000/posts?title=${titleString}`)
-    .then(res => res.json())
+  return fetchIt(`http://localhost:8000/posts?title=${titleString}`)
 };
 
 export const searchPostCategories = categoryId => {
-  return fetch(`http://localhost:8000/posts?category=${categoryId}`)
-    .then(res => res.json())
+  return fetchIt(`http://localhost:8000/posts?category=${categoryId}`)
 };
 
 export const updatePost = (newPost, postId) => {
