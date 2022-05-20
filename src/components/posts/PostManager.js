@@ -38,6 +38,10 @@ export const getUserPosts = () => {
   return fetchIt(`${Settings.API}/posts/current_user_list`)
 };
 
+export const getPostsByUser = (id) => {
+  return fetchIt(`${Settings.API}/posts?user=${id}`);
+};
+
 export const getPostsByTag = (id) => {
   return fetchIt(`${Settings.API}/posts?tag_id=${id}`);
 };
