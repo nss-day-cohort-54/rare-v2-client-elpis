@@ -11,6 +11,7 @@ export const UserList = () => {
     // define needed state variables
     // users, setUsers = useState()
     const [users, setUsers] = useState([])
+    
 
     // define needed useEffects
     // useEffect(() => getUsers function and set as users state variable, [])
@@ -20,6 +21,8 @@ export const UserList = () => {
                 setUsers(userData)
             })
     }, [])
+
+    
     // define needed functions
     // will the users have any buttons?
     // user links to individual pages probably don't need buttons/history.push()
@@ -32,6 +35,8 @@ export const UserList = () => {
         <div>First Name</div>
         <div>Last Name</div>
         <div>Email</div>
+        <div>User Type</div>
+
     </div>
     {
         users.map(user => {

@@ -9,12 +9,12 @@ import { Settings } from "../utils/Settings"
 // username
 // email
 export const getAllUsers = () => {
-    return fetchIt(`${Settings.API}/users`)
+    return fetchIt(`${Settings.API}/rare_users`)
 }
 
 // get single user by user id
 // returns user object with posts array embedded
 // user object should have all properties except password
 export const getSingleUser = (id) => {
-    return fetchIt(`${Settings.API}/users/${id}`)
+    return fetchIt(`${Settings.API}/rare_users/${id}`)
 }
