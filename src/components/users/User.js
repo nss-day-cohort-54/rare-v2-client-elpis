@@ -28,14 +28,14 @@ export const User = ({ listView, user }) => {
         }, [userId, listView]
     )
 
-    useEffect(
-        () => {
-            if(viewUser) {
-                let count = viewUser.posts.length
-                setPostCount(count)
-            }
-        }, [viewUser]
-    )
+    // useEffect(
+    //     () => {
+    //         if(viewUser) {
+    //             let count = viewUser.posts.length
+    //             setPostCount(count)
+    //         }
+    //     }, [viewUser]
+    // )
         // define state variables
         // maybe get user's articles for the clickable article count?
         // articles, setArticles = useState()
@@ -65,28 +65,29 @@ export const User = ({ listView, user }) => {
             ? <div className="singleUser">
                 <div>
                     <Link to={`/users/${user.id}`}>
-                    {user.username}
+                    {user.user.username}
                     </Link>
                 </div>
-                <div>{user.firstName}</div>
-                <div>{user.lastName}</div>
-                <div>{user.email}</div>
+                <div>{user.user.first_name}</div>
+                <div>{user.user.last_name}</div>
+                <div>{user.user.email}</div>
+                <div>{viewUser.user.is_staff ? "Admin" : "Author"}</div>
             </div> 
             : viewUser
                 ? <div>
-                    <div>Picture: <img src={`${viewUser.profileImageUrl || "https://m.media-amazon.com/images/I/91xDQaUMubS._AC_SL1500_.jpg"}`} width={300} height={300} /></div>
-                    <div>Name: {viewUser.firstName} {viewUser.lastName}</div>
-                    <div>Username: {viewUser.username}</div>
-                    <div>Email: {viewUser.email}</div>
-                    <div>Creation Date: {viewUser.createdOn}</div>
-                    <div>Profile Type: Author</div>
+                    <div><img src={`${viewUser.profile_image_url}`} width={300} height={300} /></div>
+                    <div>{viewUser.user.first_name} {viewUser.user.last_name}</div>
+                    <div>Username: {viewUser.user.username}</div>
+                    <div>Email: {viewUser.user.email}</div>
+                    <div>Creation Date: {viewUser.created_on}</div>
+                    <div>Profile Type: {viewUser.user.is_staff ? "Admin" : "Author"}</div>
                     <div>
                         <Link to={`/posts/user/${viewUser.id}`}>
-                        See Articles - Count: {postCount}
+                        {/* See Articles - Count: {postCount} */}
                         </Link>
                     </div>
                     <div>
-                        <SubForm author={viewUser} />
+                        {/* <SubForm author={viewUser} /> */}
                     </div>
                 </div>
                 : null
