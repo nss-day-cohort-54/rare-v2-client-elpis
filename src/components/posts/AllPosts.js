@@ -10,19 +10,19 @@ import { getAllCategories } from "../categories/CategoryManager";
 export const AllPosts = () => {
 
     const [posts, setPosts] = useState([])
-    // const [users, setUsers] = useState([])
+    const [users, setUsers] = useState([])
     const [tags, setTags] = useState([])
     const [categories, setCategories] = useState([])
     const [filter, setFilterType] = useState({ type: "all", value: "" })
 
 
-    // useEffect(
-    //     () => {
-    //         getAllUsers()
-    //             .then(setUsers)
-    //     },
-    //     []
-    // )
+    useEffect(
+        () => {
+            getAllUsers()
+                .then(setUsers)
+        },
+        []
+    )
 
     useEffect(
         () => {
